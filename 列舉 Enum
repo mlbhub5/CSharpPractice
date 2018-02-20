@@ -1,0 +1,45 @@
+public class EnumClass
+    {
+        public enum 制度
+        {
+            主任,
+            副主任,
+            組長,
+            資深同事,
+            實習生
+        }
+    }
+-------------------------------------
+
+設定DropDownList資料來源為EnumClass內容：
+
+DropDownList1.DataSource = Enum.GetNames(typeof(EnumClass.制度));
+DropDownList1.DataBind();
+
+----------------------------------------------------
+
+將DropDownList的SelectedValue轉型回EnumType：
+
+if (Enum.TryParse(DropDownList1.SelectedValue, out EnumClass.制度 ss))
+            {
+                switch (ss)
+                {
+                    case EnumClass.制度.主任:
+                        //Response.Write("主任");
+                        break;
+                    case EnumClass.制度.副主任:
+                        //Response.Write("副主任");
+                        break;
+                    case EnumClass.制度.組長:
+                        //Response.Write("組長");
+                        break;
+                    case EnumClass.制度.資深同事:
+                        //Response.Write("資深同事");
+                        break;
+                    case EnumClass.制度.實習生:
+                        //Response.Write("實習生");
+                        break;
+                    default:
+                        break;
+                }
+            }
