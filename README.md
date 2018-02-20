@@ -1,2 +1,3 @@
 # CSharpPractice
-Some codesnippet
+
+小筆記
