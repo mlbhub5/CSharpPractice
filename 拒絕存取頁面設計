@@ -1,7 +1,7 @@
 <html>
 <body>
   <div id="spam">
-    <h1><spam>X</spam> 您無此權限</h1>
+    <h1><span>X</span> 您無此權限</h1>
     <p>如需存取 請聯絡系統管理員<br/><br/>
     <small>---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</small></p>
   </div><br><br>
@@ -21,7 +21,7 @@ body {
 #spam {
   background-color: lightgray;
   border-radius: 5px;
-  margin: auto;
+  margin:15% auto;
   width: 85%;
   cursor: not-allowed;
 }
@@ -34,7 +34,7 @@ h1 {
   border-bottom-style: dashed;
   padding-bottom: 20px;
 }
-spam {
+span {
    color: red;
    text-decoration: none;
    cursor: not-allowed;
