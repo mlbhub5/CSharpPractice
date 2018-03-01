@@ -1,0 +1,22 @@
+GetAuthority()
+{
+  string[] result;
+  result=select auth from... where id=xxxx;
+  return result;
+}
+
+ShowButton(string[] authority)
+{
+  foreach(string auth in authority)
+  {
+    switch(auth)
+    {
+      case("組長"):
+        btn_組長.Visible=True;
+        break;
+      case("經理"):
+        btn_經理.Visible=True;
+        break;
+    }
+  }
+}
