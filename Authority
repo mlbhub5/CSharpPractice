@@ -1,22 +1,62 @@
-GetAuthority()
+Enum.制度 GetAuthority()
 {
-  string[] result;
-  result=select auth from... where id=xxxx;
-  return result;
+  ArrayList res=new ArrayList();
+  res.Add(foreach(select auth from... where id=xxxx));
+  var enumList = res
+                    .Select(x => (MyEnumType) Enum.Parse(typeof(MyEnumType), x))
+                    .ToList();
+             -----------------OR--------------------
+  var enumList = res.Select(x => Enum.Parse(typeof(MyEnumType), x))
+                    .Cast<MyEnumType>()
+                    .ToList();
+  return enumList;
 }
 
-ShowButton(string[] authority)
+ShowButton(Enum.制度 enumList)
 {
-  foreach(string auth in authority)
+  foreach(var auth in enumList)
   {
     switch(auth)
     {
-      case("組長"):
+      case Enum.制度.組長:
         btn_組長.Visible=True;
         break;
-      case("經理"):
-        btn_經理.Visible=True;
+      case Enum.制度.副主任:
+        btn_副主任.Visible=True;
         break;
     }
   }
+}
+----------------------------
+public static class EnumHelper
+{
+    public static List<T> ToList<T>()
+    {
+        return Enum.GetValues( typeof( T ) ).Cast<T>().ToList<T>();
+    }
+ 
+    public static IEnumerable<T> ToEnumerable<T>()
+    {
+        return Enum.GetValues( typeof( T ) ).Cast<T>();
+    }
+ 
+}
+
+/*將EnumType中的項目轉出成為List*/
+List<EnumType> enumTypeList = EnumHelper.ToList<EnumType>();
+ 
+/*項目依名稱排序*/
+var sortByName = enumTypeList.OrderBy( r => r.ToString() );
+ 
+/*項目依照值排序*/
+var sortByValue = enumTypeList.OrderBy( r => r );
+
+-----------------------------
+enum 制度
+{
+ 主任=0,
+ 副主任=1,
+ 組長=2,
+ 資深同事=3,
+ 實習生=4
 }
